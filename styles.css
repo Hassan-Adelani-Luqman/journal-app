@@ -1,0 +1,467 @@
+/* ─── CSS Custom Properties ──────────────────────────────────────────────── */
+:root {
+  --color-bg: #f4f6f9;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-text: #1e293b;
+  --color-text-muted: #64748b;
+  --color-primary: #6366f1;
+  --color-primary-hover: #4f46e5;
+  --color-danger: #ef4444;
+  --color-danger-hover: #dc2626;
+  --color-secondary: #94a3b8;
+  --color-secondary-hover: #64748b;
+
+  /* Mood badge colors */
+  --mood-happy: #fef08a;
+  --mood-happy-text: #713f12;
+  --mood-sad: #bfdbfe;
+  --mood-sad-text: #1e3a5f;
+  --mood-motivated: #d8b4fe;
+  --mood-motivated-text: #4c1d95;
+  --mood-stressed: #fecaca;
+  --mood-stressed-text: #7f1d1d;
+  --mood-calm: #bbf7d0;
+  --mood-calm-text: #14532d;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.12), 0 8px 24px rgba(0, 0, 0, 0.08);
+  --transition: 0.2s ease;
+  --sidebar-width: 360px;
+}
+
+/* ─── Reset & Base ────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ─── Screen-reader Only ──────────────────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── Layout ──────────────────────────────────────────────────────────────── */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ─── Sidebar ─────────────────────────────────────────────────────────────── */
+.sidebar {
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  padding: 2rem 1.5rem;
+  gap: 1.5rem;
+}
+
+.sidebar-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.app-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.app-subtitle {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* ─── Form ────────────────────────────────────────────────────────────────── */
+.entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  font-family: inherit;
+  color: var(--color-text);
+  background: var(--color-bg);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  background: var(--color-surface);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-group select {
+  cursor: pointer;
+}
+
+.form-error {
+  font-size: 0.875rem;
+  color: var(--color-danger);
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.75rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* ─── Buttons ─────────────────────────────────────────────────────────────── */
+.btn {
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition), box-shadow var(--transition);
+  font-family: inherit;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+  flex: 1;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
+}
+
+.btn-secondary {
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  border: 1.5px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  background: var(--color-border);
+  color: var(--color-text);
+}
+
+.btn-edit {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+  padding: 0.375rem 0.75rem;
+  font-size: 0.8125rem;
+  border-radius: var(--radius-sm);
+}
+
+.btn-edit:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.btn-delete {
+  background: transparent;
+  color: var(--color-danger);
+  border: 1.5px solid var(--color-danger);
+  padding: 0.375rem 0.75rem;
+  font-size: 0.8125rem;
+  border-radius: var(--radius-sm);
+}
+
+.btn-delete:hover {
+  background: var(--color-danger);
+  color: #fff;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ─── Main Content ────────────────────────────────────────────────────────── */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+/* ─── Controls Bar ────────────────────────────────────────────────────────── */
+.controls-bar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-wrapper {
+  flex: 1;
+  min-width: 180px;
+}
+
+.search-wrapper input {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  font-family: inherit;
+  background: var(--color-surface);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.search-wrapper input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.filter-wrapper select {
+  padding: 0.625rem 0.875rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  font-family: inherit;
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.filter-wrapper select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.entry-count {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+/* ─── Entry Cards Grid ────────────────────────────────────────────────────── */
+.entries-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  align-content: start;
+}
+
+/* ─── Entry Card ──────────────────────────────────────────────────────────── */
+.entry-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.entry-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.entry-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+/* ─── Mood Badges ─────────────────────────────────────────────────────────── */
+.mood-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.mood-happy     { background: var(--mood-happy);     color: var(--mood-happy-text); }
+.mood-sad       { background: var(--mood-sad);       color: var(--mood-sad-text); }
+.mood-motivated { background: var(--mood-motivated); color: var(--mood-motivated-text); }
+.mood-stressed  { background: var(--mood-stressed);  color: var(--mood-stressed-text); }
+.mood-calm      { background: var(--mood-calm);      color: var(--mood-calm-text); }
+
+/* ─── Entry Content ───────────────────────────────────────────────────────── */
+.entry-content {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  overflow-wrap: break-word;
+  flex: 1;
+  /* Clamp to 4 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ─── Entry Footer ────────────────────────────────────────────────────────── */
+.entry-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.entry-date {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.entry-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ─── Empty State ─────────────────────────────────────────────────────────── */
+.empty-state {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    padding: 1.5rem 1rem;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .main-content {
+    padding: 1rem;
+  }
+
+  .controls-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-wrapper {
+    min-width: 0;
+  }
+
+  .entry-count {
+    text-align: right;
+  }
+
+  .entries-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-title {
+    font-size: 1.25rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn-primary {
+    flex: none;
+  }
+}

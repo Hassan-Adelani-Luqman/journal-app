@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mood Journal</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-layout">
+
+      <!-- ── Sidebar / Form Panel ─────────────────────────────────────── -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h1 class="app-title">📓 Mood Journal</h1>
+          <p class="app-subtitle">Track your daily thoughts & feelings</p>
+        </div>
+
+        <form id="entry-form" class="entry-form" novalidate>
+          <!-- Hidden field stores the ID of the entry being edited -->
+          <input type="hidden" id="edit-id" />
+
+          <div class="form-group">
+            <label for="input-title">Title</label>
+            <input
+              type="text"
+              id="input-title"
+              placeholder="Give your entry a title…"
+              maxlength="100"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="input-mood">Mood</label>
+            <select id="input-mood">
+              <option value="" disabled selected>Select your mood…</option>
+              <option value="Happy">😄 Happy</option>
+              <option value="Sad">😔 Sad</option>
+              <option value="Motivated">🚀 Motivated</option>
+              <option value="Stressed">😤 Stressed</option>
+              <option value="Calm">😌 Calm</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="input-content">Content</label>
+            <textarea
+              id="input-content"
+              placeholder="What's on your mind today?"
+              rows="6"
+              maxlength="2000"
+            ></textarea>
+          </div>
+
+          <p id="form-error" class="form-error hidden" role="alert"></p>
+
+          <div class="form-actions">
+            <button type="submit" id="submit-btn" class="btn btn-primary">Add Entry</button>
+            <button type="button" id="cancel-btn" class="btn btn-secondary hidden">Cancel</button>
+          </div>
+        </form>
+      </aside>
+
+      <!-- ── Main Content ─────────────────────────────────────────────── -->
+      <main class="main-content">
+
+        <!-- Controls bar -->
+        <div class="controls-bar">
+          <div class="search-wrapper">
+            <label for="search-input" class="sr-only">Search entries</label>
+            <input
+              type="search"
+              id="search-input"
+              placeholder="Search entries…"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="filter-wrapper">
+            <label for="mood-filter" class="sr-only">Filter by mood</label>
+            <select id="mood-filter">
+              <option value="ALL">All Moods</option>
+              <option value="Happy">😄 Happy</option>
+              <option value="Sad">😔 Sad</option>
+              <option value="Motivated">🚀 Motivated</option>
+              <option value="Stressed">😤 Stressed</option>
+              <option value="Calm">😌 Calm</option>
+            </select>
+          </div>
+
+          <span id="entry-count" class="entry-count">0 entries</span>
+        </div>
+
+        <!-- Entry cards grid -->
+        <div id="entries-container" class="entries-container"></div>
+      </main>
+
+    </div>
+
+    <!-- Compiled TypeScript → JavaScript (ES module) -->
+    <script type="module" src="dist/journal.js"></script>
+  </body>
+</html>
