@@ -12,7 +12,10 @@
       <!-- ── Sidebar / Form Panel ─────────────────────────────────────── -->
       <aside class="sidebar">
         <div class="sidebar-header">
-          <h1 class="app-title">📓 Mood Journal</h1>
+          <div class="sidebar-title-row">
+            <h1 class="app-title">📓 Mood Journal</h1>
+            <button id="dark-mode-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+          </div>
           <p class="app-subtitle">Track your daily thoughts & feelings</p>
         </div>
 
@@ -40,6 +43,10 @@
               <option value="Motivated">🚀 Motivated</option>
               <option value="Stressed">😤 Stressed</option>
               <option value="Calm">😌 Calm</option>
+              <option value="Anxious">😰 Anxious</option>
+              <option value="Grateful">🙏 Grateful</option>
+              <option value="Tired">😴 Tired</option>
+              <option value="Excited">🤩 Excited</option>
             </select>
           </div>
 
@@ -47,10 +54,11 @@
             <label for="input-content">Content</label>
             <textarea
               id="input-content"
-              placeholder="What's on your mind today?"
+              placeholder="What's on your mind today? (Ctrl+Enter to save)"
               rows="6"
               maxlength="2000"
             ></textarea>
+            <div class="char-counter"><span id="char-count">0</span> / 2000</div>
           </div>
 
           <p id="form-error" class="form-error hidden" role="alert"></p>
@@ -86,11 +94,28 @@
               <option value="Motivated">🚀 Motivated</option>
               <option value="Stressed">😤 Stressed</option>
               <option value="Calm">😌 Calm</option>
+              <option value="Anxious">😰 Anxious</option>
+              <option value="Grateful">🙏 Grateful</option>
+              <option value="Tired">😴 Tired</option>
+              <option value="Excited">🤩 Excited</option>
             </select>
           </div>
 
+          <div class="filter-wrapper">
+            <label for="sort-select" class="sr-only">Sort entries</label>
+            <select id="sort-select">
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+            </select>
+          </div>
+
+          <button id="export-btn" class="btn btn-export" title="Export entries as JSON">Export</button>
+
           <span id="entry-count" class="entry-count">0 entries</span>
         </div>
+
+        <!-- Mood analytics strip -->
+        <div id="mood-analytics" class="mood-analytics" aria-label="Mood breakdown"></div>
 
         <!-- Entry cards grid -->
         <div id="entries-container" class="entries-container"></div>
@@ -98,7 +123,9 @@
 
     </div>
 
-    <!-- Compiled TypeScript → JavaScript (ES module) -->
+    <!-- Toast notifications -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
     <script type="module" src="dist/journal.js"></script>
   </body>
 </html>
